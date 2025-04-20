@@ -153,22 +153,40 @@ Type 'help' to see available commands.
             print(f"\nRunning performance test with {policy} policy...")
             print(f"Submitting {num_jobs} jobs with CPU time between {min_cpu} and {max_cpu} seconds...")
             
-      
+            start_time = time.time()
+            
+            # Submit jobs
             for i in range(num_jobs):
-              
+                # Generate random CPU time
                 cpu_time = min_cpu + random.random() * (max_cpu - min_cpu)
                 
-                
+                # Generate random priority
                 priority = random.randint(1, priority_levels) if policy == "Priority" else 0
                 
-                
+                # Submit job
                 job_name = f"{benchmark}_{i+1}"
                 self.scheduler.submit_job(job_name, cpu_time, priority)
                 
-              
+                # Sleep briefly to avoid overwhelming the system
                 time.sleep(0.01)
             
             print(f"All {num_jobs} jobs submitted. Test running...")
+            
+            # Wait for jobs to complete
+            while self.scheduler.stats["completed_jobs"] < num_jobs:
+                time.sleep(0.1)
+            
+            # Calculate test results
+            elapsed_time = time.time() - start_time
+            stats = self.scheduler.get_performance_stats()
+            throughput = num_jobs / elapsed_time
+            
+            print("\nTest Results:")
+            print(f"  Scheduling Policy: {policy}")
+            print(f"  Number of Jobs: {num_jobs}")
+            print(f"  Total Time: {elapsed_time:.2f} seconds")
+            print(f"  Average Response Time: {stats['avg_response_time']:.2f} seconds")
+            print(f"  Throughput: {throughput:.2f} jobs per second\n")
             
         except ValueError:
             print("Error: Invalid parameters")

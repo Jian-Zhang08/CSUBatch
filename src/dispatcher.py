@@ -19,6 +19,9 @@ class Dispatcher(threading.Thread):
         self.scheduler = scheduler
         self.running = True
         self.current_job = None
+        
+        # Get the project root directory
+        self.project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     def run(self):
         """
@@ -39,11 +42,11 @@ class Dispatcher(threading.Thread):
                 job.status = "Completed"
                 job.end_time = time.time()
                 
-                
+                # Calculate actual execution time
                 actual_exec_time = job.end_time - job.start_time
                 print(f"Job completed: {job.name} (actual time: {actual_exec_time:.2f} seconds)")
                 
-               
+                # Register job completion with scheduler
                 self.scheduler.register_job_completion(job)
                 
                 self.current_job = None
@@ -61,15 +64,18 @@ class Dispatcher(threading.Thread):
         """
         try:
             # Get the path to the benchmark script
-            # Use relative path from the current file's location
-            current_dir = os.path.dirname(os.path.abspath(__file__))
-            script_path = os.path.join(os.path.dirname(current_dir), "benchmark", "batch_job.py")
+            script_path = os.path.join(self.project_root, "benchmark", "batch_job.py")
+            
+            if not os.path.exists(script_path):
+                raise FileNotFoundError(f"Benchmark script not found at {script_path}")
             
             # Run the benchmark script with the job's execution time
             subprocess.run([sys.executable, script_path, str(job.exec_time)], 
                           check=True)
             
         except subprocess.CalledProcessError as e:
+            print(f"Error executing job {job.name}: {e}")
+        except Exception as e:
             print(f"Error executing job {job.name}: {e}")
     
     def stop(self):

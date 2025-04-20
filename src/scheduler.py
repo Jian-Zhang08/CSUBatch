@@ -104,7 +104,6 @@ class Scheduler(threading.Thread):
         """
         stats = self.stats.copy()
         
-        # Calculate average response time
         if stats["completed_jobs"] > 0:
             stats["avg_response_time"] = stats["total_response_time"] / stats["completed_jobs"]
         else:

@@ -1,0 +1,58 @@
+{
+  "policy_comparison": [
+    {
+      "name": "FCFS_standard_test",
+      "policy": "FCFS",
+      "num_jobs": 10,
+      "avg_response_time": 4.169293284416199,
+      "throughput": 1.5816870059990389,
+      "test_duration": 6.322363376617432,
+      "timestamp": "2025-03-30T22:43:26.081633",
+      "test_type": "policy_comparison",
+      "execution_order": [
+        "job_1",
+        "job_2",
+        "job_3",
+        "job_4",
+        "job_5",
+        "job_6"
+      ]
+    },
+    {
+      "name": "SJF_standard_test",
+      "policy": "SJF",
+      "num_jobs": 10,
+      "avg_response_time": 1.071161437034607,
+      "throughput": 4.327796171240773,
+      "test_duration": 2.3106448650360107,
+      "timestamp": "2025-03-30T22:43:28.488164",
+      "test_type": "policy_comparison",
+      "execution_order": [
+        "job_6",
+        "job_2",
+        "job_8",
+        "job_4",
+        "job_10",
+        "job_5"
+      ]
+    },
+    {
+      "name": "Priority_standard_test",
+      "policy": "Priority",
+      "num_jobs": 10,
+      "avg_response_time": 1.9224910736083984,
+      "throughput": 3.215601821735632,
+      "test_duration": 3.109837770462036,
+      "timestamp": "2025-03-30T22:43:32.432332",
+      "test_type": "policy_comparison",
+      "execution_order": [
+        "job_4",
+        "job_5",
+        "job_10",
+        "job_2",
+        "job_8",
+        "job_3"
+      ]
+    }
+  ]
+}
