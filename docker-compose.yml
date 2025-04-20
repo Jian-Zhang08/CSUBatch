@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  csubatch:
+    build: .
+    image: csubatch:latest
+    container_name: csubatch
+    volumes:
+      # Mount the results directory to persist test results
+      - ./results:/app/results
+    stdin_open: true  # Keep STDIN open
+    tty: true         # Allocate a pseudo-TTY 

@@ -37,6 +37,7 @@ Type 'help' to see available commands.
         print("  fcfs: Change the scheduling policy to FCFS")
         print("  sjf: Change the scheduling policy to SJF")
         print("  priority: Change the scheduling policy to Priority")
+        print("  performance: Run automated performance test")
         print("  test <benchmark> <policy> <num_jobs> <priority_levels> <min_cpu> <max_cpu>: "
               "Run automated performance test")
         print("  quit: Exit CSUbatch")
@@ -223,6 +224,15 @@ Type 'help' to see available commands.
         
         return True
     
+    def do_performance(self, arg):
+        """
+        Run automated performance test in performance/test_runner.py
+        """
+        from performance.test_runner import run_performance_test
+        run_performance_test()
+        
+            
+
     def _calculate_expected_waiting_time(self, job):
         """
         Calculate the expected waiting time for a job

@@ -15,6 +15,16 @@ from src.queueManager import JobQueue
 from src.scheduler import Scheduler
 from src.dispatcher import Dispatcher
 
+# Add this function for the UI to call
+def run_performance_test():
+    """
+    Function to be called from the UI to run performance tests
+    """
+    print("\nRunning automated performance tests...")
+    runner = PerformanceTestRunner()
+    runner.run_all_tests()
+    print("\nPerformance tests completed.")
+
 class PerformanceTestRunner:
     def __init__(self):
         """Initialize the performance test runner"""
@@ -46,7 +56,6 @@ class PerformanceTestRunner:
             List of job specifications (name, exec_time, priority)
         """
         # Each job is defined as (name, execution_time, priority)
-        # Using extreme differences to highlight policy characteristics
         return [
             ("job_1", 5.0, 1),    
             ("job_2", 0.5, 3),    

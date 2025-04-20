@@ -20,40 +20,57 @@ Key features:
 * Python 3.6 or higher
 * No external Python packages required
 
-### Installing
+### Installation Options
 
-#### Using pip (recommended)
+
+#### 1. Using pip
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/CSUbatch.git
+git clone https://github.com/yateeshbalaji/CSUbatch.git
 cd CSUbatch
 
 # Install the package
 pip install .
 ```
 
-#### Manual installation
+#### 2. Using Docker (Recommended for Linux)
+
+This is the easiest way to run CSUbatch without installing any dependencies:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/CSUbatch.git
+git clone https://github.com/yateeshbalaji/CSUbatch.git
 cd CSUbatch
 
-# Make sure the benchmark directory exists
-mkdir -p benchmark
+# Run the Docker container
+./run-docker.sh
 ```
+
+This will build and start a Docker container with CSUbatch. All results will be saved to the `results` directory.
+
+Requirements:
+- Docker
+- docker-compose
 
 ### Executing program
 
-#### If installed with pip
+
+
+#### 1. If installed with pip
 
 ```bash
 # Run CSUbatch from anywhere
 csubatch
 ```
 
-#### Manual execution
+#### 2. Using Docker
+
+```bash
+./run-docker.sh
+```
+
+#### 3. Manual execution
 
 ```bash
 # Run from the project root directory
@@ -73,6 +90,7 @@ python main.py
 * `fcfs` - Change scheduling policy to First-Come-First-Served
 * `sjf` - Change scheduling policy to Shortest Job First
 * `priority` - Change scheduling policy to Priority-based
+* `performance` - Run automated performance tests comparing scheduling policies
 * `test <benchmark> <policy> <num_jobs> <priority_levels> <min_cpu> <max_cpu>` - Run automated performance test
 * `quit` - Exit CSUbatch and display performance statistics
 * `help` - Display help information
@@ -187,9 +205,6 @@ If you encounter any problems, use the built-in help command:
 CSUbatch> help
 ```
 
-## Authors
-
-Your Name - [your.email@example.com](mailto:your.email@example.com)
 
 ## License
 
