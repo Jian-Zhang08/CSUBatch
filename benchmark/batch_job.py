@@ -1,18 +1,29 @@
+#!/usr/bin/env python3
 import sys
 import time
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: python batch_job.py <execution_time_in_seconds>")
-        return
+    """
+    Simulate a CPU-intensive job
+    Usage: python batch_job.py <duration>
+    """
+    if len(sys.argv) != 2:
+        print("Usage: python batch_job.py <duration>")
+        sys.exit(1)
     
     try:
-        exec_time = float(sys.argv[1])
-        # This simulates a job running without consuming CPU resources
-        time.sleep(exec_time)
-        
+        duration = float(sys.argv[1])
     except ValueError:
-        print("Error: Execution time must be a number")
+        print("Error: Duration must be a number")
+        sys.exit(1)
+    
+    # Simulate CPU-intensive work
+    start_time = time.time()
+    while time.time() - start_time < duration:
+        # Perform some CPU-intensive calculations
+        _ = sum(i * i for i in range(1000))
+    
+    print(f"Job completed in {time.time() - start_time:.2f} seconds")
 
 if __name__ == "__main__":
     main()

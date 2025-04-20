@@ -1,10 +1,18 @@
+#!/usr/bin/env python3
 # src/main.py
 import time
 import threading
-from .queueManager import JobQueue
-from .scheduler import Scheduler
-from .dispatcher import Dispatcher
-from .ui import CSUbatchUI
+import os
+import sys
+
+# Add the project root directory to the Python path
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, project_root)
+
+from src.queueManager import JobQueue
+from src.scheduler import Scheduler
+from src.dispatcher import Dispatcher
+from src.ui import CSUbatchUI
 
 def main():
     """

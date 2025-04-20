@@ -2,7 +2,7 @@
 import cmd
 import time
 import random
-from .job import Job
+from src.job import Job
 
 class CSUbatchUI(cmd.Cmd):
     """Command-line interface for CSUbatch scheduling system"""

@@ -1,7 +1,7 @@
 # src/scheduler.py
 import threading
 import time
-from .job import Job
+from src.job import Job
 
 class Scheduler(threading.Thread):
     def __init__(self, job_queue):

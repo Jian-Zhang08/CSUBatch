@@ -230,15 +230,6 @@ class PerformanceTestRunner:
         print(f"  For Response Time: {best_response}")
         print(f"  For Throughput: {best_throughput}")
         
-        # Compare average wait times by job
-        print("\nDetailed Job Response Times by Policy:")
-        for i, job_spec in enumerate(self.create_test_jobs()):
-            job_name = job_spec[0]
-            print(f"  {job_name}:")
-            for policy in policy_results:
-                job_index = policy_results[policy]['execution_order'].index(job_name)
-                response_time = policy_results[policy]['response_times'][job_index]
-                print(f"    {policy}: {response_time:.2f}s")
     
     def save_results(self, filename=None):
         """

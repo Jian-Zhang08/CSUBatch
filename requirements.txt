@@ -1,1 +1,2 @@
-matplotlib>=3.5.0
+# No external dependencies required
+# This file is included for compatibility with standard Python project structures
