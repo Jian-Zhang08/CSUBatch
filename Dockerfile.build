@@ -1,0 +1,52 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Install required packages
+RUN apt-get update && apt-get install -y binutils && apt-get clean
+RUN pip install pyinstaller
+
+# Copy source files
+COPY src/ /app/src/
+COPY benchmark/ /app/benchmark/
+COPY performance/ /app/performance/
+COPY setup.py /app/
+COPY linux-installer.sh /app/
+
+# Create build script
+RUN echo '#!/bin/bash \n\
+# Build the executable \n\
+echo "Building CSUbatch executable for Linux..." \n\
+pyinstaller --name=CSUbatch --onefile --add-data="benchmark:benchmark" --add-data="performance:performance" src/main.py \n\
+\n\
+# Create required directories \n\
+echo "Creating required directories..." \n\
+mkdir -p dist/benchmark \n\
+mkdir -p dist/performance \n\
+mkdir -p dist/results \n\
+\n\
+# Copy required files \n\
+echo "Copying required files..." \n\
+cp benchmark/batch_job.py dist/benchmark/ \n\
+cp performance/*.py dist/performance/ \n\
+cp linux-installer.sh dist/install.sh \n\
+\n\
+# Create an empty __init__.py if it does not exist \n\
+touch dist/performance/__init__.py \n\
+\n\
+# Make scripts executable \n\
+echo "Setting executable permissions..." \n\
+chmod +x dist/CSUbatch \n\
+chmod +x dist/benchmark/batch_job.py \n\
+chmod +x dist/install.sh \n\
+\n\
+# Create release package \n\
+echo "Creating release package..." \n\
+cd dist \n\
+tar -czf /output/CSUbatch-linux.tar.gz CSUbatch benchmark performance results install.sh \n\
+\n\
+echo "Build complete! Release package created at /output/CSUbatch-linux.tar.gz" \n\
+' > /app/build.sh && chmod +x /app/build.sh
+
+# Run the build script on container start
+ENTRYPOINT ["/app/build.sh"] 

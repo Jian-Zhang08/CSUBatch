@@ -4,8 +4,8 @@ setup(
     name="CSUbatch",
     version="1.0.0",
     description="A batch scheduling system for job management",
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="-",
+    author_email="-",
     packages=find_packages(),
     install_requires=[],
     entry_points={

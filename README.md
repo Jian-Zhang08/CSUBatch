@@ -15,15 +15,71 @@ Key features:
 
 ## Getting Started
 
-### Dependencies
-
-* Python 3.6 or higher
-* No external Python packages required
-
 ### Installation Options
 
+#### 1. Standalone Executable (Easiest, No Dependencies)
 
-#### 1. Using pip
+We provide standalone executables that don't require Python or any dependencies:
+
+**For Windows users:**
+1. Download the latest Windows release from the [Releases page](https://github.com/yourusername/CSUbatch/releases)
+2. Extract the ZIP file
+3. Run `CSUbatch.exe`
+
+**For Linux users:**
+1. Download the latest Linux release from the [Releases page](https://github.com/yourusername/CSUbatch/releases)
+2. Extract the archive: `tar -xzf CSUbatch-linux.tar.gz`
+3. Make the executable file executable if needed: `chmod +x CSUbatch`
+4. Run the executable: `./CSUbatch`
+
+That's it! No installation required.
+
+**To build the executable yourself:**
+
+Windows:
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/CSUbatch.git
+cd CSUbatch
+
+# Run the build script
+.\build_executable.bat
+```
+
+Linux:
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/CSUbatch.git
+cd CSUbatch
+
+# Make the build script executable
+chmod +x build_executable.sh
+
+# Run the build script
+./build_executable.sh
+```
+
+The executable will be created in the `dist` directory.
+
+#### 2. Running directly from the codebase
+
+```bash
+git clone https://github.com/yourusername/CSUbatch.git
+cd CSUbatch
+
+python -m src.main 
+
+or
+
+cd src
+python main.py
+```
+
+#### 3. Using pip
+
+requirements: 
+- Install pip for python 3.6: 
+- Consider upgrading to a newer Python version
 
 ```bash
 # Clone the repository
@@ -34,17 +90,32 @@ cd CSUbatch
 pip install .
 ```
 
-#### 2. Using Docker (Recommended for Linux)
+#### 4. Using Docker (Recommended for Linux)
 
 This is the easiest way to run CSUbatch without installing any dependencies:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yateeshbalaji/CSUbatch.git
+git clone https://github.com/yourusername/CSUbatch.git
 cd CSUbatch
+```
+
+**For Linux/Mac users:**
+```bash
+# Make the script executable
+chmod +x run-docker.sh
 
 # Run the Docker container
 ./run-docker.sh
+```
+
+**For Windows users:**
+```powershell
+# Option 1: Run the PowerShell script
+.\run-docker.ps1
+
+# Option 2: Run Docker commands directly
+docker-compose up --build
 ```
 
 This will build and start a Docker container with CSUbatch. All results will be saved to the `results` directory.
@@ -54,8 +125,6 @@ Requirements:
 - docker-compose
 
 ### Executing program
-
-
 
 #### 1. If installed with pip
 
@@ -204,7 +273,6 @@ If you encounter any problems, use the built-in help command:
 ```
 CSUbatch> help
 ```
-
 
 ## License
 
