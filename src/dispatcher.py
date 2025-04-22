@@ -53,7 +53,7 @@ class Dispatcher(threading.Thread):
                 
             except Exception as e:
                 print(f"Error in dispatcher: {e}")
-                time.sleep(1)  # Wait a bit before retrying
+                time.sleep(1)  
     
     def execute_job(self, job):
         """

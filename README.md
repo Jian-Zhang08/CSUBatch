@@ -17,10 +17,10 @@ Key features:
 
 ### Installation Options
 
-#### 1. Running directly from the codebase
+#### 1. Running the program directly from the codebase
 
 ```bash
-git clone https://github.com/yourusername/CSUbatch.git
+git clone https://github.com/Jian-Zhang08/CSUBatch.git
 cd CSUbatch
 
 python -m src.main 
@@ -50,12 +50,12 @@ requirements:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yateeshbalaji/CSUbatch.git
+git clone https://github.com/Jian-Zhang08/CSUBatch.git
 cd CSUbatch
 
 # Install the package
 pip install .
-#start the progrom
+#R un the progrom
 csubatch
 ```
 
@@ -65,7 +65,7 @@ This is the easiest way to run CSUbatch without installing any dependencies:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/CSUbatch.git
+git clone https://github.com/Jian-Zhang08/CSUBatch.git
 cd CSUbatch
 
 # Make the script executable

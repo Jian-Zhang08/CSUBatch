@@ -27,17 +27,17 @@ class JobQueue:
         """
         with self.not_full:
             while len(self.queue) >= self.max_size:
-                # Wait until queue is not full
+ 
                 self.not_full.wait()
             
-            # Set arrival time if not already set
+
             if job.arrival_time is None:
                 job.arrival_time = time.time()
             
-            # Add job to queue
+
             self.queue.append(job)
             
-            # Notify dispatcher that queue is not empty
+
             self.not_empty.notify()
     
     def get_job(self):
@@ -49,13 +49,13 @@ class JobQueue:
         """
         with self.not_empty:
             while len(self.queue) == 0:
-                # Wait until queue is not empty
+            
                 self.not_empty.wait()
             
-            # Get next job (always from the left - first element)
+        
             job = self.queue.popleft()
             
-            # Notify scheduler that queue is not full
+ 
             self.not_full.notify()
             
             return job
@@ -68,13 +68,13 @@ class JobQueue:
             policy (str): The scheduling policy to use
         """
         with self.mutex:
-            # Remember the current policy
+       
             self.current_policy = policy
             
-            # Convert to list for sorting
+        
             jobs = list(self.queue)
             
-            # Sort according to policy
+         
             if policy == "FCFS":
                 # Sort by arrival time (ascending - earliest first)
                 jobs.sort(key=lambda job: job.arrival_time)
@@ -85,7 +85,7 @@ class JobQueue:
                 # Sort by priority (descending - highest priority first)
                 jobs.sort(key=lambda job: job.priority, reverse=True)
             
-            # Clear queue and re-add jobs in the sorted order
+       
             self.queue.clear()
             for job in jobs:
                 self.queue.append(job)

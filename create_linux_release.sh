@@ -1,11 +1,10 @@
-#!/bin/bash
 
 # Build the executable
-echo "Building CSUbatch executable..."
+echo "Building CSUbatch executable"
 ./build_executable.sh
 
 # Create release directory
-echo "Creating release package..."
+echo "Creating release package"
 mkdir -p release
 
 # Create the release package

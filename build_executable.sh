@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Install PyInstaller if not already installed
 echo "Installing PyInstaller..."
 pip install pyinstaller

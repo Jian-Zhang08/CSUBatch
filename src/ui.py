@@ -158,13 +158,13 @@ Type 'help' to see available commands.
             
             # Submit jobs
             for i in range(num_jobs):
-                # Generate random CPU time
+               
                 cpu_time = min_cpu + random.random() * (max_cpu - min_cpu)
                 
-                # Generate random priority
+                
                 priority = random.randint(1, priority_levels) if policy == "Priority" else 0
                 
-                # Submit job
+           
                 job_name = f"{benchmark}_{i+1}"
                 self.scheduler.submit_job(job_name, cpu_time, priority)
                 
@@ -218,7 +218,7 @@ Type 'help' to see available commands.
         
         print("\nThank you for using CSUbatch!\n")
         
-        # Stop threads
+
         self.scheduler.stop()
         self.dispatcher.stop()
         

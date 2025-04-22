@@ -1,4 +1,4 @@
-# performance/test_runner.py
+
 import sys
 import os
 import time
@@ -55,7 +55,7 @@ class PerformanceTestRunner:
         Returns:
             List of job specifications (name, exec_time, priority)
         """
-        # Each job is defined as (name, execution_time, priority)
+
         return [
             ("job_1", 5.0, 1),    
             ("job_2", 0.5, 3),    
@@ -81,7 +81,7 @@ class PerformanceTestRunner:
         """
         print(f"\nRunning test: {config['name']}")
         
-        # Get predefined test jobs
+
         test_jobs = self.create_test_jobs()
         num_jobs = len(test_jobs)
         
@@ -98,23 +98,23 @@ class PerformanceTestRunner:
         # Create a custom queue with all jobs
         job_objects = []
         for i, (name, exec_time, priority) in enumerate(test_jobs):
-            # Create a job with predefined properties
+         
             job = Job(name, exec_time, priority)
-            job.arrival_time = start_time + (i * 0.1)  # Simulate staggered arrivals
+            job.arrival_time = start_time + (i * 0.1) 
             job_objects.append(job)
             print(f"Added job: {name} (exec_time: {exec_time}s, priority: {priority})")
         
         # Sort jobs based on the policy
         if config["policy"] == "FCFS":
-            # Sort by arrival time
+          
             job_objects.sort(key=lambda j: j.arrival_time)
             print("Jobs sorted by arrival time (FCFS)")
         elif config["policy"] == "SJF":
-            # Sort by execution time
+            
             job_objects.sort(key=lambda j: j.exec_time)
             print("Jobs sorted by execution time (SJF)")
         elif config["policy"] == "Priority":
-            # Sort by priority (higher values first)
+            
             job_objects.sort(key=lambda j: j.priority, reverse=True)
             print("Jobs sorted by priority (Priority)")
         
@@ -135,7 +135,7 @@ class PerformanceTestRunner:
             print(f"  Started: {job.name} (waited: {wait_time:.2f}s)")
             job_execution_order.append(job.name)
             
-            # Simulate job execution (use 30% of original time for speed)
+           
             simulation_time = job.exec_time * 0.3
             time.sleep(simulation_time)
             
@@ -150,12 +150,12 @@ class PerformanceTestRunner:
             
             print(f"  Completed: {job.name} (response time: {response_time:.2f}s)")
         
-        # Calculate performance metrics
+       
         test_duration = current_time - start_time
         avg_response_time = sum(response_times) / len(response_times)
         throughput = num_jobs / test_duration
         
-        # Compile results
+     
         results = {
             "name": config["name"],
             "policy": config["policy"],
@@ -191,7 +191,7 @@ class PerformanceTestRunner:
             results = self.run_single_test(config)
             all_results.append(results)
         
-        # Store policy comparison results
+   
         self.results = {
             "policy_comparison": all_results
         }
